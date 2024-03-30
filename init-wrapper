@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# -*- coding: utf-8 -*-
+# Run /init with PID 1, creating a new PID namespace if required
+# This is needed for linuxerver.io containers to run on fly, as they crashloop
+# otherwise
+
+if [ "$$" -eq 1]; then
+  exec /init "$@"
+else
+  exec unshare --pid sh -c '
+    unshare --mount-proc /init "$@" &
+    child="$!"
+    trap "kill -INT \$child" INT
+    trap "kill -TERM \$child" TERM
+    until wait "$child" || ! kill -0 "$child" 2>/dev/null; do :; done
+  ' sh "$@"
+fi

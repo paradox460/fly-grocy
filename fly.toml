@@ -1,0 +1,26 @@
+# fly.toml app configuration file generated for sandberg-grocy on 2024-03-30T13:18:02-06:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = <YOUR APP NAME HERE>
+primary_region = <YOUR REGION HERE>
+
+[build]
+
+[http_service]
+  internal_port = 80
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
+
+[mount]
+source = "grocy_data"
+destination = "/config"
