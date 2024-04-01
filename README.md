@@ -1,6 +1,6 @@
 # Grocy on Fly
 
-These are my minimal changes to the [linuxserver.io grocy image](https://github.com/linuxserver/docker-grocy) to get it running on [fly.io][https://fly.io/]. They're mostly around resolving issues with linuxserver containers wanting to run at PID 1, which fly will not allow
+These are my minimal changes to the [linuxserver.io grocy image](https://github.com/linuxserver/docker-grocy) to get it running on [fly.io](https://fly.io/). They're mostly around resolving issues with linuxserver containers wanting to run at PID 1, which fly will not allow
 
 [Grocy](https://grocy.info) is an ERP for your home. Aka a grocery list manager and inventory tracker, with other cool superpowers.
 
